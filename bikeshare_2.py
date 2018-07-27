@@ -17,25 +17,24 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    city = input('Please enter a city (Chicago, New York, Washington):')
     while True:
-        city = input ('Please enter a city (Chicago, New York, Washington)')
-        if city.lower() not in ('chicago','new york','washington'):
+        city = input ('Please enter a city (Chicago, New York, Washington)').lower()
+        if city not in ('chicago','new york','washington'):
             print('Invalid Input')
         else:
             break
     # get user input for month (all, january, february, ... , june)
     while True:
-        month = input ('Please enter a month (all, january, february, ... , june)')
-        if month.lower() not in ('all','january','february', 'march', 'april','may','june'):
+        month = input ('Please enter a month (all, january, february, ... , june)').lower()
+        if month not in ('all','january','february', 'march', 'april','may','june'):
             print('Invalid Input')
         else:
             break
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
-        day = input ('Please enter a day of week (all, monday, tuesday, ... sunday)')
-        if day.lower() not in ('all','monday','tuesday', 'wednesday', 'thursday','friday','saturday', 'sunday'):
+        day = input ('Please enter a day of week (all, monday, tuesday, ... sunday)').lower()
+        if day not in ('all','monday','tuesday', 'wednesday', 'thursday','friday','saturday', 'sunday'):
             print('Invalid Input')
         else:
             break
@@ -56,7 +55,7 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
   # load data file into a dataframe
-    df = pd.read_csv(CITY_DATA[city, month, day])
+    df = pd.read_csv(CITY_DATA[city])
 
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
