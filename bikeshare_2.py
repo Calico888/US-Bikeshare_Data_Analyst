@@ -121,7 +121,7 @@ def station_stats(df):
     # display most frequent combination of start station and end station trip
     most_frequent_combination = df.groupby(['Start Station','End Station']).size().nlargest(1)
     print(most_frequent_combination)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -133,10 +133,12 @@ def trip_duration_stats(df):
     start_time = time.time()
 
     # display total travel time
-
+    total_trip_duration = df['Trip Duration'].sum()
+    print(total_trip_duration)
 
     # display mean travel time
-
+    mean_travel_time = df['Trip Duration'].mean()
+    print(mean_travel_time)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
