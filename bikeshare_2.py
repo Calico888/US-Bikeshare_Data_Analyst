@@ -18,8 +18,8 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
-        city = input ('Please enter a city (Chicago, New York, Washington)').lower()
-        if city not in ('chicago','new york','washington'):
+        city = input ('Please enter a city (Chicago, New York City, Washington)').lower()
+        if city not in ('chicago','new york city','washington'):
             print('Invalid Input')
         else:
             break
@@ -89,7 +89,7 @@ def time_stats(df):
 
     # display the most common month
     common_month = df['month'].mode()[0]
-    print(common_month)
+    print('This is the most common month{}'.format(common_month))
     # display the most common day of week
     common_day = df['day_of_week'].mode()[0]
     print(common_day)
@@ -154,14 +154,14 @@ def user_stats(df):
     print(user_types)
 
     # Display counts of gender
-    df['Gender'] = df['Gender'].fillna(value = 0)
+    df['Gender'] = df['Gender'].fillna(0)
     gender_counts = df['Gender'].value_counts()
     print(gender_counts)
 
     # Display earliest, most recent, and most common year of birth
-    earliest_year = df['Birth Year']['Value'].min()
+    earliest_year = df['Birth Year'].idxmin()
     print(earliest_year)
-    most_recent_year = df['Birth Year']['Value'].max()
+    most_recent_year = df['Birth Year'].idxmax()
     print(most_recent_year)
     common_year = df['Birth Year'].mode()[0]
     print(common_year)
@@ -169,6 +169,9 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
+def washington_user_stats(df):
+    user_types =df['User Type'].value_counts()
+    print(user_types)
 
 def main():
     while True:
@@ -178,7 +181,10 @@ def main():
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
-        user_stats(df)
+        if city in ('chicago','new york city'):
+            user_stats(df)
+        else:
+            washington_user_stats(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
