@@ -1,4 +1,5 @@
 import time
+import calendar
 import pandas as pd
 import numpy as np
 
@@ -89,15 +90,16 @@ def time_stats(df):
 
     # display the most common month
     common_month = df['month'].mode()[0]
-    print('This is the most common month{}'.format(common_month))
+    common_month = calendar.month_name[common_month]
+    print('This is the most common month: {}'.format(common_month))
     # display the most common day of week
     common_day = df['day_of_week'].mode()[0]
-    print(common_day)
+    print('This is the most common day of the week: {}'.format(common_day))
 
     # display the most common start hour
     df['Hour'] = df['Start Time'].dt.hour
     common_hour = df['Hour'].mode()[0]
-    print(common_hour)
+    print('This is the most common hour: {}'.format(common_hour))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
