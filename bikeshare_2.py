@@ -184,6 +184,19 @@ def secs_to_Mins(secs):
     else:
         return datetime.datetime.fromtimestamp(secs).strftime('%H:%M:%S')
 
+def display_data(df):
+    index = 5
+    while True:
+        answer = input('Do you want to see the raw data?').lower()
+        if answer== 'yes':
+            print (df.iloc[ : index])
+            index += 5
+        if answer == 'no':
+            break
+        if answer not in ('yes','no'):
+            answer = input('Invalid Input. Please answer Yes or No?').lower()
+
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -196,11 +209,11 @@ def main():
             user_stats(df)
         else:
             washington_user_stats(df)
-
+        display_data(df)
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
 
 
 if __name__ == "__main__":
-	main()
+    main()
